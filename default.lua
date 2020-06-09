@@ -39,4 +39,14 @@ function OnEvent(event, arg)
   if (event == "MOUSE_BUTTON_PRESSED" and arg == 8) then
     moveSpace("left");
   end
+
+  if (event == "MOUSE_BUTTON_RELEASED" and arg == 5) then
+    PressKey("lgui", "lshift", "lbracket");
+    ReleaseKey("lgui", "lshift", "lbracket");
+  end
+
+  if (event == "MOUSE_BUTTON_RELEASED" and arg == 4) then
+    PressKey("lgui", "lshift", "rbracket");
+    ReleaseKey("lgui", "lshift", "rbracket");
+  end
 end
