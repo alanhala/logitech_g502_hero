@@ -1,19 +1,4 @@
--- DEFAULT
-MISSION_CONTROL_ENABLED = false
-
 ClearLog();
-
-function triggerMissionControl()
-  if (MISSION_CONTROL_ENABLED == true) then
-    PressKey("escape");
-    ReleaseKey("escape");
-    MISSION_CONTROL_ENABLED = false;
-  else
-    PressKey("lctrl", "up");
-    ReleaseKey("lctrl", "up");
-    MISSION_CONTROL_ENABLED = true;
-  end
-end
 
 function moveSpace(direction)
   if (direction == "right") then
@@ -28,8 +13,15 @@ end
 function OnEvent(event, arg)
   OutputLogMessage("Event -> "..event.."\n");
   OutputLogMessage("Button -> "..arg.."\n");
-  if (event == "MOUSE_BUTTON_PRESSED" and arg == 9) then
-    triggerMissionControl()
+
+  if (event == "MOUSE_BUTTON_RELEASED" and arg == 4) then
+    PressKey("lgui", "lshift", "rbracket");
+    ReleaseKey("lgui", "lshift", "rbracket");
+  end
+
+  if (event == "MOUSE_BUTTON_RELEASED" and arg == 5) then
+    PressKey("lgui", "lshift", "lbracket");
+    ReleaseKey("lgui", "lshift", "lbracket");
   end
 
   if (event == "MOUSE_BUTTON_PRESSED" and arg == 7) then
@@ -38,15 +30,10 @@ function OnEvent(event, arg)
 
   if (event == "MOUSE_BUTTON_PRESSED" and arg == 8) then
     moveSpace("left");
-  end
+  end  
 
-  if (event == "MOUSE_BUTTON_RELEASED" and arg == 5) then
-    PressKey("lgui", "lshift", "lbracket");
-    ReleaseKey("lgui", "lshift", "lbracket");
-  end
-
-  if (event == "MOUSE_BUTTON_RELEASED" and arg == 4) then
-    PressKey("lgui", "lshift", "rbracket");
-    ReleaseKey("lgui", "lshift", "rbracket");
+  if (event == "MOUSE_BUTTON_PRESSED" and arg == 9) then
+    PressKey("lctrl", "up");
+    ReleaseKey("lctrl", "up");
   end
 end
